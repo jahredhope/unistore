@@ -1,7 +1,5 @@
 import 'raf/polyfill';
 import React, { Component } from 'react';
-import TestUtils from 'react-dom/test-utils';
-import PropTypes from 'prop-types';
 
 import createStore from '../../src';
 import { Provider, connect } from '../../src/integrations/react';
@@ -20,28 +18,10 @@ describe('integrations/react', () => {
 			}
 		}
 
-		Child.contextTypes = {
-			[storeKey]: PropTypes.object.isRequired
-		};
-
 		return Child;
 	};
 	const Child = createChild();
 
-	it('should provide props into context', () => {
-		const store = createStore(() => ({}));
-
-		const spy = jest.spyOn(console, 'error');
-		const tree = TestUtils.renderIntoDocument(
-			<Provider store={store}>
-				<Child />
-			</Provider>
-		);
-		expect(spy).not.toHaveBeenCalled();
-
-		const child = TestUtils.findRenderedComponentWithType(tree, Child);
-		expect(child.context.store).toBe(store);
-	});
 
 	it('should pass mapped state as props', () => {
 		let state = { a: 'b' };

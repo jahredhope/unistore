@@ -22,10 +22,22 @@ describe('build: default', () => {
 		it('should export Provider', () => {
 			expect(react).toHaveProperty('Provider', expect.any(Function));
 		});
+		it('should export useAction', () => {
+			expect(react).toHaveProperty('useAction', expect.any(Function));
+		});
+		it('should export useSelector', () => {
+			expect(react).toHaveProperty('useSelector', expect.any(Function));
+		});
+		it('should export useStore', () => {
+			expect(react).toHaveProperty('useStore', expect.any(Function));
+		});
 		it('should no export anything else', () => {
 			expect(react).toEqual({
 				connect: react.connect,
-				Provider: react.Provider
+				Provider: react.Provider,
+				useAction: react.useAction,
+				useSelector: react.useSelector,
+				useStore: react.useStore
 			});
 		});
 	});
